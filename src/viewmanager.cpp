@@ -154,14 +154,14 @@ void ViewManager::reload_views() {
                 }
             }
             if (name_taken) {
-                QMessageBox::information(this, tr("Name in Use!"),
-                    tr("A custom view was found in your settings called '%1.' "
-                    "However, this name is already taken by a built-in view, "
-                    "you must rename the custom view.").arg(gv->name()));
+                QMessageBox::information(this, tr("이미 사용중인 이름!"),
+                    tr("사용자 설정에서 '%1'이라는 커스텀 보기를 찾았습니다. "
+                    "하지만, 이 이름은 이미 기본 제공 보기에서 사용되므로, "
+                    "커스텀 보기의 이름을 변경해야 합니다.").arg(gv->name()));
                 QString new_name;
                 while (new_name.isEmpty() || new_name == gv->name()) {
-                    new_name = QInputDialog::getText(this, tr("Rename View"),
-                                    tr("New name for '%1'").arg(gv->name()));
+                    new_name = QInputDialog::getText(this, tr("보기 이름 바꾸기"),
+                                    tr("'%1'의 새 이름").arg(gv->name()));
                 }
                 gv->set_name(new_name);
             }
@@ -622,8 +622,8 @@ int ViewManager::add_tab_for_gridview(GridView *v) {
 
 void ViewManager::remove_tab_for_gridview(int idx) {
     if (count() < 2) {
-        QMessageBox::warning(this, tr("Can't Remove Tab"),
-            tr("Cannot remove the last tab!"));
+        QMessageBox::warning(this, tr("탭을 삭제할 수 없음"),
+            tr("마지막 탭은 삭제할 수 없습니다!"));
         return;
     }
     foreach(GridView *v, m_views) {

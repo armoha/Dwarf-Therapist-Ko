@@ -518,7 +518,7 @@ void MainWindow::lost_df_connection(bool show_dialog) {
             QString desc = err_msg.value(2);
             if(!desc.isEmpty())
                 desc.append("<br><br>");
-            mb.setInformativeText(desc.append(tr("Please re-connect when Dwarf Fortress has been started and a fort has been loaded.")));
+            mb.setInformativeText(desc.append(tr("드워프 포트리스가 시작되고 요새를 로드한 다음에 다시 연결하십시오.")));
             mb.setDetailedText(err_msg.at(3));
             if (mb.exec() == QMessageBox::Retry) {
                 ui->act_connect_to_DF->trigger();
@@ -1052,8 +1052,8 @@ void MainWindow::import_gridviews() {
 void MainWindow::clear_user_settings() {
     QMessageBox *mb = new QMessageBox(qApp->activeWindow());
     mb->setIcon(QMessageBox::Warning);
-    mb->setWindowTitle(tr("Clear User Settings"));
-    mb->setText(tr("Warning: This will delete all of your user settings and exit Dwarf Therapist!"));
+    mb->setWindowTitle(tr("사용자 설정 지우기"));
+    mb->setText(tr("경고: 사용자 설정이 모두 삭제되고 드워프 테라피스트가 종료됩니다!"));
     mb->addButton(QMessageBox::Ok);
     mb->addButton(QMessageBox::Cancel);
     if(QMessageBox::Ok == mb->exec()) {
@@ -1071,8 +1071,8 @@ void MainWindow::clear_user_settings() {
             delete mb;
             mb = new QMessageBox(qApp->activeWindow());
             mb->setIcon(QMessageBox::Critical);
-            mb->setWindowTitle("Clear User Settings");
-            mb->setText(tr("Unable to delete settings file."));
+            mb->setWindowTitle("사용자 설정 지우기");
+            mb->setText(tr("설정 파일을 삭제할 수 없었습니다."));
             mb->exec();
             return;
         }
@@ -1107,7 +1107,7 @@ void MainWindow::remove_filter_script(){
     QAction *a = qobject_cast<QAction*>(QObject::sender());
     QString name =a->data().toString();
 
-    int answer = QMessageBox::question(0,"Confirm Remove",tr("Are you sure you want to remove script: <b>%1</b>?").arg(name),QMessageBox::Yes,QMessageBox::No);
+    int answer = QMessageBox::question(0,"삭제 확인",tr("정말로 스크립트를 제거하시겠습니까?: <b>%1</b>").arg(name),QMessageBox::Yes,QMessageBox::No);
     if(answer == QMessageBox::Yes){
         QSettings *s = DT->user_settings();
         s->remove(QString("filter_scripts/%1").arg(name));
@@ -1176,12 +1176,12 @@ void MainWindow::done_editing_role(int result){
 void MainWindow::remove_custom_role(){
     QAction *a = qobject_cast<QAction*>(QObject::sender());
     QString name = a->data().toString();
-    int answer = QMessageBox::question(0,"Confirm Remove",tr("Are you sure you want to remove role: <b>%1</b>?").arg(name),QMessageBox::Yes,QMessageBox::No);
+    int answer = QMessageBox::question(0,"삭제 확인",tr("정말로 역할을 제거하시겠습니까?: <b>%1</b>").arg(name),QMessageBox::Yes,QMessageBox::No);
     if(answer == QMessageBox::Yes){
         GameDataReader::ptr()->get_roles().remove(name);
 
         //prompt and remove columns??
-        answer = QMessageBox::question(0,"Clean Views",tr("Would you also like to remove role <b>%1</b> from all custom views?").arg(name),QMessageBox::Yes,QMessageBox::No);
+        answer = QMessageBox::question(0,"보기 정리",tr("모든 커스텀 보기에서 역할 <b>%1</b>를 제거하시겠습니까?").arg(name),QMessageBox::Yes,QMessageBox::No);
         if(answer == QMessageBox::Yes){
             ViewManager *vm = m_view_manager;
             foreach(GridView *gv, vm->views()){
@@ -1544,7 +1544,7 @@ void MainWindow::done_editing_opt_plan(int result){
 void MainWindow::remove_opt(){
     QAction *a = qobject_cast<QAction*>(QObject::sender());
     QString name = a->data().toString();
-    int answer = QMessageBox::question(0,"Confirm Remove",tr("Are you sure you want to remove optimization plan: <b>%1</b>?").arg(name),QMessageBox::Yes,QMessageBox::No);
+    int answer = QMessageBox::question(0,"삭제 확인",tr("정말로 최적화 계획을 제거하시겠습니까?: <b> %1/b>").arg(name),QMessageBox::Yes,QMessageBox::No);
     if(answer == QMessageBox::Yes){
         GameDataReader::ptr()->get_opt_plans().remove(name);
         write_labor_optimizations();
@@ -1685,7 +1685,7 @@ void MainWindow::optimize(QString plan_name){
 
     laborOptimizerPlan *p = GameDataReader::ptr()->get_opt_plans().value(plan_name);
     if(!p){
-        QMessageBox::information(this, tr("Plan Missing"), tr("Couldn't find optimization plan."));
+        QMessageBox::information(this, tr("계획 누락"), tr("최적화 계획을 찾을 수 없습니다."));
         return;
     }
     LaborOptimizer *o = new LaborOptimizer(p,this);

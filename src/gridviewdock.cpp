@@ -190,9 +190,9 @@ void GridViewDock::delete_view() {
         return;
 
     int answer = QMessageBox::question(
-                0, tr("Delete View"),
-                tr("Deleting '%1' will permanently delete it from disk. <h1>Really "
-                   "delete '%1'?</h1><h2>There is no undo!</h2>").arg(view->name()),
+                0, tr("보기 삭제"),
+                tr("'%1'을(를) 삭제하면 디스크에서 영구적으로 삭제됩니다. <h1>정말로 "
+                   "'%1'을(를) 삭제하시겠습니까?</h1><h2>실행 취소할 수 없습니다!</h2>").arg(view->name()),
                 QMessageBox::Yes | QMessageBox::No);
     if (answer == QMessageBox::Yes) {
         LOGI << "permanently deleting set" << view->name();

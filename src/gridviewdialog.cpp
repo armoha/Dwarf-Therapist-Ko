@@ -375,10 +375,10 @@ void GridViewDialog::draw_column_context_menu(const QPoint &p) {
     } //else { // in whitespace
 
     if (!m_active_set) { // can't do much without a parent for our cols
-        QMessageBox::warning(this, tr("No Set Selected"),
-                             tr("Please select an existing set on the left side pane before "
-                                "attempting to modify columns. If there are no sets yet, "
-                                "create one first."));
+        QMessageBox::warning(this, tr("선택한 집합 없음"),
+                             tr("열을 수정하기 전에 왼쪽 창에서 기존 세트를 "
+                                "선택하세요. 아직 세트가 없으면, "
+                                "먼저 세트를 만드세요."));
         return;
     }
 
@@ -794,13 +794,13 @@ void GridViewDialog::add_need_column() {
 
 void GridViewDialog::accept() {
     if (ui->le_name->text().isEmpty()) {
-        QMessageBox::warning(this, tr("Empty Name"), tr("Cannot save a view with no name!"));
+        QMessageBox::warning(this, tr("빈 이름"), tr("이름이 없는 보기를 저장할 수 없습니다!"));
         return;
     } else if (m_manager->get_view(ui->le_name->text())) {
         // this name exists
         if (!m_is_editing || (m_is_editing && m_original_name != ui->le_name->text())) {
-            QMessageBox m(QMessageBox::Question, tr("Overwrite View?"),
-                tr("There is already a view named <b>%1</b><h3>Do you want to overwrite it?</h3>").arg(ui->le_name->text()),
+            QMessageBox m(QMessageBox::Question, tr("보기를 덮어쓰시겠습니까?"),
+                tr("이미 <b>%1</b><h3>이라는 이름의 보기가 있습니다. 덮어쓰시겠습니까?</h3>").arg(ui->le_name->text()),
                 QMessageBox::Yes | QMessageBox::No, 0);
             if (m.exec() == QMessageBox::Yes) {
                 return QDialog::accept();

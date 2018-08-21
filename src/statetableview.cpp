@@ -615,14 +615,14 @@ void StateTableView::set_nickname() {
 
 QString StateTableView::ask_name(const QString &msg, const QString &str_name, const QString &str_default){
     bool ok;
-    QString new_name = QInputDialog::getText(this, tr("New %1").arg(str_name),
-                                             msg + tr(" Leave blank to reset to the default."), QLineEdit::Normal,
+    QString new_name = QInputDialog::getText(this, tr("새 %1").arg(str_name),
+                                             msg + tr(" 기본값으로 재설정하려면 비워 두십시오."), QLineEdit::Normal,
                                              tr(qPrintable(str_default)), &ok);
     if(ok){
         if(new_name.length() > MAX_STR_LEN){
-            QMessageBox::warning(this, tr("Max Length Exceeded"),
-                                 tr("Due to technical limitations, %1 must be under %2 characters "
-                                    "long. If you require a longer %1, you'll have to set it within Dwarf Fortress!").arg(str_name).arg(MAX_STR_LEN));
+            QMessageBox::warning(this, tr("최대 길이를 초과"),
+                                 tr("기술적 제한으로 인해, %1 은 반드시 %2 글자 이내여야 합니다. "
+                                    " 더 긴 %1이 필요하면, 당신은 그것을 드워프 포트리스 내부에서 설정해야 합니다!").arg(str_name).arg(MAX_STR_LEN));
             new_name.resize(MAX_STR_LEN);
         }
         return new_name;
@@ -686,9 +686,9 @@ void StateTableView::set_custom_profession_text(bool prompt) {
         do {
             bool ok;
             if (warn)
-                QMessageBox::warning(this, tr("Name too long!"), tr("Profession names must be 15 characters or shorter!"));
-            prof_name = QInputDialog::getText(this, tr("New Custom Profession Name"),
-                                              tr("Custom Profession"), QLineEdit::Normal, QString(), &ok);
+                QMessageBox::warning(this, tr("이름이 너무 김!"), tr("직업 이름은 15자 이하여야 합니다!"));
+            prof_name = QInputDialog::getText(this, tr("새 커스텀 직업 이름"),
+                                              tr("커스텀 직업"), QLineEdit::Normal, QString(), &ok);
             if (!ok)
                 return;
             warn = prof_name.length() > 15;

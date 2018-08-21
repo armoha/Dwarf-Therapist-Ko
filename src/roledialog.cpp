@@ -248,7 +248,7 @@ bool RoleDialog::save_role()
 {
     QString new_name = ui->le_role_name->text().trimmed();
     if (new_name.isEmpty()) {
-        QMessageBox::critical(this, tr("Invalid Role Name"), tr("Role names cannot be blank."));
+        QMessageBox::critical(this, tr("잘못된 역할 이름"), tr("역할 이름은 비워 둘 수 없습니다."));
         return false;
     }
     m_role->name(new_name);
@@ -419,8 +419,8 @@ void RoleDialog::copy_role()
     auto answer = QMessageBox::Yes;
     if(m_role->has_aspects()) {
         answer = QMessageBox::question(
-                    0, tr("Confirm Copy"),
-                    tr("Copying this role will replace all current aspects with the selected role's aspects. Continue?"),
+                    0, tr("복사 확인"),
+                    tr("이 역할을 복사하면 선택한 역할의 현재 설정이 모두 대체됩니다. 계속하시겠습니까?"),
                     QMessageBox::Yes | QMessageBox::No);
     }
     if (answer != QMessageBox::Yes)
@@ -442,7 +442,7 @@ void RoleDialog::update_role_preview()
         return;
 
     if (!m_dwarf) {
-        ui->lbl_name->setText("Select a dwarf to view ratings.");
+        ui->lbl_name->setText("등급을 볼 드워프를 선택하십시오");
         ui->lbl_current->clear();
         ui->lbl_new->clear();
         return;

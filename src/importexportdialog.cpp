@@ -425,7 +425,7 @@ void ImportExportDialog::accept() {
         import_selected_roles();
         break;
     default:
-        QMessageBox::warning(this, tr("Oh no!"), tr("Unknown import/export type!"));
+        QMessageBox::warning(this, tr("저런!"), tr("알 수 없는 가져오기/내보내기 유형입니다!"));
         return;
     }
     return QDialog::accept();
@@ -451,8 +451,8 @@ void ImportExportDialog::export_selected_roles() {
     s.endArray();
     s.sync();
     if (exported)
-        QMessageBox::information(this, tr("Export Successful"),
-            tr("Exported %n custom role(s)", "", exported));
+        QMessageBox::information(this, tr("내보내기 성공"),
+            tr("커스텀 역할 %n개를 내보냈습니다.", "", exported));
     m_roles.clear();
 }
 
@@ -476,7 +476,7 @@ void ImportExportDialog::export_selected_professions() {
     s.endArray();
     s.sync();
     if (exported)
-        QMessageBox::information(this, tr("Export Successful"),tr("Exported %n custom profession(s)", "", exported));
+        QMessageBox::information(this, tr("내보내기 성공"),tr("커스텀 직업 %n개를 내보냈습니다", "", exported));
     m_profs.clear();
 }
 
@@ -492,8 +492,8 @@ void ImportExportDialog::import_selected_roles(){
     DT->get_main_window()->write_roles();
     DT->get_main_window()->refresh_roles_data();
     if(imported)
-        QMessageBox::information(this, tr("Import Successful"),
-            tr("Imported %n custom role(s)", "", imported));
+        QMessageBox::information(this, tr("가져오기 성공"),
+            tr("커스텀 역할 %n개를 가져왔습니다", "", imported));
 
     m_roles.clear();
 }
@@ -503,8 +503,8 @@ void ImportExportDialog::import_selected_professions() {
     int imported = profs.count();
     DT->add_custom_professions(profs);
     if (imported)
-        QMessageBox::information(this, tr("Import Successful"),
-            tr("Imported %n custom profession(s)", "", imported));
+        QMessageBox::information(this, tr("가져오기 성공"),
+            tr("커스텀 직업 %n개를 가져왔습니다", "", imported));
 
     m_profs.clear();
 }
@@ -529,8 +529,8 @@ void ImportExportDialog::export_selected_gridviews() {
     s.endArray();
     s.sync();
     if (exported)
-        QMessageBox::information(this, tr("Export Successful"),
-            tr("Exported %n grid view(s)", "", exported));
+        QMessageBox::information(this, tr("내보내기 성공"),
+            tr("격자 보기 %n개를 내보냈습니다", "", exported));
 
     m_views.clear();
 }
@@ -543,8 +543,8 @@ void ImportExportDialog::import_selected_gridviews() {
         imported++;
     }
     if (imported) {
-        QMessageBox::information(this, tr("Import Successful"),
-            tr("Imported %n grid view(s)", "", imported));
+        QMessageBox::information(this, tr("가져오기 성공"),
+            tr("격자 보기 %n개를 가져왔습니다", "", imported));
         view_mgr->write_views();
         view_mgr->reload_views();
     }

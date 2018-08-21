@@ -115,21 +115,21 @@ bool SuperLabor::is_valid() {
 
     QString proposed_name = ui->name_edit->text().trimmed();
     if (proposed_name.isEmpty()) {
-        QMessageBox::warning(m_dialog, tr("Naming Error!"),
-                             tr("You must enter a name for this Super Labor!"));
+        QMessageBox::warning(m_dialog, tr("이름 오류!"),
+                             tr("이 슈퍼 노동의 이름을 입력해야 합니다!"));
         return false;
     }
     foreach(SuperLabor *sl, DT->get_super_labors()){
         if(sl != this && sl->get_name() == proposed_name){
-            QMessageBox::warning(m_dialog, tr("Duplicate Name!"),
-                                 tr("A Super Labor with this name already exists!"));
+            QMessageBox::warning(m_dialog, tr("이름 중복됨!"),
+                                 tr("이 이름을 가진 슈퍼 노동이 이미 있습니다!"));
             return false;
         }
     }
     foreach(CustomProfession *cp, DT->get_custom_professions()){
         if(cp->get_name() == proposed_name){
-            QMessageBox::warning(m_dialog, tr("Duplicate Name!"),
-                                 tr("A Custom Profession with this name already exists!"));
+            QMessageBox::warning(m_dialog, tr("이름 중복됨!"),
+                                 tr("이 이름을 가진 커스텀 직업이 이미 있습니다!"));
             return false;
         }
     }

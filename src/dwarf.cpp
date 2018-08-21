@@ -2944,13 +2944,13 @@ void Dwarf::dump_memory_to_file() {
         m_df->read_raw(m_address, 0xb90, data);
         f->write(m_df->pprint(data).toLatin1());
         f->close();
-        QMessageBox::information(DT->get_main_window(), tr("Dumped"),
-                                 tr("%1 has been dumped to %2")
+        QMessageBox::information(DT->get_main_window(), tr("덤프됨"),
+                                 tr("%1이(가) %2에 덤프되었습니다.")
                                  .arg(nice_name())
                                  .arg(d.absoluteFilePath(filename)));
     } else {
-        QMessageBox::warning(DT->get_main_window(), tr("Unable to Dump Dwarf"),
-                             tr("Could not write new file in log directory! "
+        QMessageBox::warning(DT->get_main_window(), tr("드워프 덤프 실패"),
+                             tr("로그 폴더에 새 파일을 작성할 수 없었습니다! "
                                 "(%1)").arg(f->errorString()));
     }
     f->deleteLater();

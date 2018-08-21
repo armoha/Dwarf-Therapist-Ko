@@ -609,8 +609,8 @@ void OptionsMenu::accept() {
 
     if(DT->get_DFInstance() && DT->get_DFInstance()->status() != DFInstance::DFS_GAME_LOADED){
         int answer = QMessageBox::question(
-                    0, tr("Apply Options"),
-                    tr("Would you like to apply the new options now (Read Data)?"),
+                    0, tr("옵션 적용"),
+                    tr("지금 새 옵션을 적용하시겠습니까 (데이터 읽기)?"),
                     QMessageBox::Yes | QMessageBox::No);
         if (answer == QMessageBox::Yes){
             DT->get_main_window()->read_dwarves();

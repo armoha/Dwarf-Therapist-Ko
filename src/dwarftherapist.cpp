@@ -382,8 +382,8 @@ void DwarfTherapist::import_existing_professions() {
         }
     }
     m_main_window->load_customizations();
-    QMessageBox::information(m_main_window, tr("Import Successful"),
-                             tr("Imported %n custom profession(s)", "", imported));
+    QMessageBox::information(m_main_window, tr("가져오기 성공"),
+                             tr("커스텀 직업 %n개 가져옴", "", imported));
 }
 
 CustomProfession *DwarfTherapist::get_custom_profession(QString name) {
@@ -533,11 +533,11 @@ void DwarfTherapist::delete_customization() {
             if (in_use_by.size() > 0) {
                 QMessageBox *box = new QMessageBox(m_main_window);
                 box->setIcon(QMessageBox::Warning);
-                box->setWindowTitle(tr("Cannot Remove Profession"));
-                box->setText(tr("<b>%1</b> is still in use by: %2 %3. Please change them to"
-                                " another profession before deleting this profession!")
+                box->setWindowTitle(tr("직업 삭제 실패"));
+                box->setText(tr("직업 <b>%1</b>이 아직 사용중입니다: %2 %3."
+                                " 이 직업을 삭제하기 이전에 저들을 다른 직업으로 변경해주세요!")
                              .arg(capitalize(c_data.id.toString())).arg(in_use_by.size()).arg((in_use_by.size() > 1 ? tr("units") : tr("unit"))));
-                box->setDetailedText(tr("Units with this profession:\n\n%1").arg(in_use_by.join("\n")));
+                box->setDetailedText(tr("이 직업을 가진 유닛:\n\n%1").arg(in_use_by.join("\n")));
                 box->exec();
                 return;
             }

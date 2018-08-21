@@ -56,8 +56,8 @@ GameDataReader::GameDataReader(QObject *parent)
         m_data_settings = QPointer<QSettings>(new QSettings(":config/game_data", QSettings::IniFormat));
         m_data_settings->setIniCodec("UTF-8");
         if(m_data_settings->childGroups().count() <= 0){
-            QString err = tr("Dwarf Therapist cannot run because game_data.ini could not be found!");
-            QMessageBox::critical(0,tr("Missing File"),err);
+            QString err = tr("game_data.ini를 찾을 수 없어서 드워프 테라피스트를 실행할 수 없습니다!");
+            QMessageBox::critical(0,tr("누락된 파일"),err);
             FATAL << err;
             exit(1);
         }
@@ -67,8 +67,8 @@ GameDataReader::GameDataReader(QObject *parent)
     required_sections << "labors" << "attributes" << "unit_jobs" << "goals" << "beliefs" << "unit_thoughts" << "facets" << "skills" << "skill_levels";
     foreach(QString key, required_sections){
         if(!m_data_settings->childGroups().contains(key)){
-            QString err = tr("Dwarf Therapist cannot run because game_data.ini is missing [%1], a critical section!").arg(key);
-            QMessageBox::critical(0,tr("Missing Section"),err);
+            QString err = tr("game_data.ini에 치명적인 섹션 [%1]가 누락되어 드워프 테라피스트를 실행할 수 없습니다!").arg(key);
+            QMessageBox::critical(0,tr("누락된 섹션"),err);
             FATAL << err;
             break;
         }

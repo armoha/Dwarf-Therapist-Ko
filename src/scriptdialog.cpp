@@ -524,8 +524,8 @@ void ScriptDialog::save_pressed() {
         s->beginGroup("filter_scripts");
         foreach(QString script_name, s->childKeys()){
             if(m_name==script_name){
-                answer = QMessageBox::question(0,"Confirm Replace",
-                                               tr("A script with this name already exists and will be overwritten. Continue?"),
+                answer = QMessageBox::question(0,"교체 확인",
+                                               tr("이 이름을 가진 스크립트가 이미 있으며 덮어씁니다. 계속하시겠습니까?"),
                                                QMessageBox::Yes,QMessageBox::No);
                 break;
             }
@@ -534,7 +534,7 @@ void ScriptDialog::save_pressed() {
     }
 
     if(answer == QMessageBox::No){
-        ui->lbl_save_status->setText(tr("Save cancelled."));
+        ui->lbl_save_status->setText(tr("저장 취소."));
         return;
     }
 
@@ -544,7 +544,7 @@ void ScriptDialog::save_pressed() {
     s->setValue(QString("filter_scripts/%1").arg(m_name), ui->script_edit->toPlainText());
     emit scripts_changed();
 
-    ui->lbl_save_status->setText(tr("Script saved successfully!"));
+    ui->lbl_save_status->setText(tr("스크립트가 성공적으로 저장됨!"));
 }
 
 void ScriptDialog::close_pressed(){

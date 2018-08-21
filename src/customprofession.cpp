@@ -247,27 +247,27 @@ bool CustomProfession::is_valid() {
     if(m_prof_id < 0){
         QString proposed_name = ui->name_edit->text().trimmed();
         if (proposed_name.isEmpty()) {
-            QMessageBox::warning(m_dialog, tr("Naming Error!"),
-                                 tr("You must enter a name for this Custom Profession!"));
+            QMessageBox::warning(m_dialog, tr("이름 오류!"),
+                                 tr("커스텀 직업의 이름을 입력해야합니다!"));
             return false;
         }
         foreach(CustomProfession *cp, DT->get_custom_professions()){
             if(cp != this && cp->get_name() == proposed_name){
-                QMessageBox::warning(m_dialog, tr("Duplicate Name!"),
-                                     tr("A Custom Profession with this name already exists!"));
+                QMessageBox::warning(m_dialog, tr("이름 중복!"),
+                                     tr("이 이름의 커스텀 직업이 이미 존재합니다!"));
                 return false;
             }
         }
         foreach(SuperLabor *sl, DT->get_super_labors()){
             if(sl->get_name() == proposed_name){
-                QMessageBox::warning(m_dialog, tr("Duplicate Name!"),
-                                     tr("A Super Labor with this name already exists!"));
+                QMessageBox::warning(m_dialog, tr("이름 중복!"),
+                                     tr("이 이름의 슈퍼 노동이 이미 존재합니다!"));
                 return false;
             }
         }
     }else{
         //inform the user that the new icons won't be shown until the next read
-        QMessageBox::information(m_dialog,tr("Read Required"),tr("The new profession icon has been saved and will be shown after the next read."));
+        QMessageBox::information(m_dialog,tr("읽기 필요"),tr("새 직업 아이콘이 저장됐고, 다음 읽어오기부터 보입니다."));
     }
     return true;
 }

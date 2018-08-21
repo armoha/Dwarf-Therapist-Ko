@@ -611,8 +611,8 @@ void optimizereditor::clear_log(){
 void optimizereditor::save_pressed(){
     if(GameDataReader::ptr()->get_opt_plan(ui->le_name->text())){
         if(QMessageBox::question(
-                    0, tr("Confirm Copy"),
-                    tr("An optimization plan with this name already exists, continue and overwrite?"),
+                    0, tr("복사 확인"),
+                    tr("이 이름을 가진 최적화 계획이 이미 있습니다. 덮어쓰고 계속하시겠습니까?"),
                     QMessageBox::Yes | QMessageBox::No) == QMessageBox::No){
             return;
         }
@@ -621,7 +621,7 @@ void optimizereditor::save_pressed(){
     save(m_plan);
 
     if(ui->le_name->text().trimmed().isEmpty()){
-        QMessageBox::critical(this,tr("Invalid Plan Name"),tr("Please enter a name for this optimization plan."));
+        QMessageBox::critical(this,tr("잘못된 계획 이름"),tr("이 최적화 계획의 이름을 입력하십시오."));
         return;
     }
 

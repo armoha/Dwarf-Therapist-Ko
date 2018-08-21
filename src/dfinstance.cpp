@@ -1209,8 +1209,8 @@ const QStringList DFInstance::status_err_msg(){
     switch(m_status){
     case DFS_DISCONNECTED:
     {
-        ret << tr("Not Running");
-        ret << tr("Unable to locate a running copy of Dwarf Fortress, are you sure it's running?");
+        ret << tr("실행 중이 아님");
+        ret << tr("실행 중인 드워프 포트리스를 찾지 못했습니다. 실행 중인게 확실한가요?");
         ret << "";
         ret << "";
     }
@@ -1218,9 +1218,9 @@ const QStringList DFInstance::status_err_msg(){
     case DFS_CONNECTED:
     {
         if(m_memory_layouts.empty()){
-            ret << tr("No Layouts Found");
-            ret << tr("No valid memory layouts could be found to attempt connection to Dwarf Fortress.");
-            ret << tr("View the details below for the directories checked.");
+            ret << tr("레이아웃이 없음");
+            ret << tr("드워프 포트리스와 연결할 메모리 레이아웃이 없습니다.");
+            ret << tr("아래 세부사항에서 경로가 제대로 되어 있는지 확인하세요.");
             ret << StandardPaths::data_locations().join("\n");
         }else{
             QStringList supported_vers;
@@ -1232,17 +1232,17 @@ const QStringList DFInstance::status_err_msg(){
                             QString("%1 (%2)").arg(layout->game_version()).arg(checksum));
             }
 
-            ret << tr("Unidentified Game Version");
-            ret << tr("I'm sorry but I don't know how to talk to this version of Dwarf Fortress!");
-            ret << tr("Checksum: %1").arg(m_df_checksum);
-            ret << tr("Supported Versions:\n%1").arg(supported_vers.join("\n"));
+            ret << tr("게임 버전 식별 불가");
+            ret << tr("죄송하지만 이 버전의 드워프 포트리스와 어떻게 소통해야할 지 모르겠네요!");
+            ret << tr("체크섬: %1").arg(m_df_checksum);
+            ret << tr("지원하는 버전:\n%1").arg(supported_vers.join("\n"));
         }
     }
         break;
     case DFS_LAYOUT_OK:
     {
-        ret << tr("No Game Loaded");
-        ret << tr("A fort has not been loaded.");
+        ret << tr("게임이 로드되지 않음");
+        ret << tr("요새가 로드되지 않았습니다.");
         ret << "";
         ret << "";
     }
@@ -1254,8 +1254,8 @@ const QStringList DFInstance::status_err_msg(){
         break;
     default:
     {
-        ret << tr("Unknown Error");
-        ret << tr("An unspecified error has occurred connecting to Dwarf Fortress");
+        ret << tr("알 수 없는 오류");
+        ret << tr("명시되지 않은 오류가 드워프 포트리스와 연결하는 동안 발생했습니다");
         ret << "";
         ret << "";
     }
